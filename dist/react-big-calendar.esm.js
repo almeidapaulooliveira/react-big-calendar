@@ -4212,14 +4212,6 @@ var ResourceHeader = function ResourceHeader(_ref) {
   var label = _ref.label
   return /*#__PURE__*/ React.createElement(React.Fragment, null, label)
 }
-ResourceHeader.propTypes =
-  process.env.NODE_ENV !== 'production'
-    ? {
-        label: PropTypes.node,
-        index: PropTypes.number,
-        resource: PropTypes.object,
-      }
-    : {}
 
 var TimeGridHeader = /*#__PURE__*/ (function (_React$Component) {
   function TimeGridHeader() {
@@ -4579,7 +4571,11 @@ var TimeGridHeaderResources = /*#__PURE__*/ (function (_React$Component) {
                   'div',
                   {
                     key: 'resource_'.concat(id, '_').concat(idx),
-                    className: 'rbc-header',
+                    className: clsx(
+                      'rbc-header',
+                      className,
+                      localizer.isSameDate(date, today) && 'rbc-today'
+                    ),
                   },
                   /*#__PURE__*/ React.createElement(ResourceHeaderComponent, {
                     index: idx,
